@@ -7,7 +7,7 @@ COPY ["aspdockerapi.csproj", "./"]
 RUN dotnet restore "./aspdockerapi.csproj"
 COPY . .
 WORKDIR "/src/."
-RUN dotnet build "aspdockerapi.csproj" -c Release -o /app/build
+RUN dotnet build /p:Version=$Version "aspdockerapi.csproj" -c Release -o /app/build
 FROM build AS publish
 RUN dotnet publish "aspdockerapi.csproj" -c Release -o /app/publish
 FROM base AS final
